@@ -27,7 +27,9 @@
 
 import unittest
 
-# Brute Force
+## Brute Force
+# Time complexity: O(n^2)
+# Space complexity: O(1)
 def two_sum_BF(nums, target):
   for i_A in range(len(nums)-1):
     for i_B in range(i_A+1, len(nums)):
@@ -35,9 +37,32 @@ def two_sum_BF(nums, target):
         return [i_A, i_B]
   return None
 
-def two_sum(nums):
-  pass
+## Hash method
+# Time complexity: O()
+# Space complexity: O()
+def two_sum(nums, target):
+  diffs = []
+  for num in nums:
+    diffs.append(target - num)
+  for i in range(len(nums)):
+    if diffs[i] in nums:
+      return []
 
+## Greedy (sort method)
+# Time complexity: O(n)
+# Space complexity: O(n)
+def two_sum(nums, target):
+  index_nums = list(enumerate(nums))
+  index_nums.sort(key=lambda x: x[1])
+  i, j = 0, len(nums)-1
+  while i<j:
+    if index_nums[i][1] + index_nums[j][1] == target:
+      return [ index_nums[i][0], index_nums[j][0] ]
+    if index_nums[i][1] + index_nums[j][1] > target:
+      j-=1
+    else:
+      i+=1
+    
 class TestSum(unittest.TestCase):
   def test_two_sum_BF(self):
     self.assertEqual(two_sum_BF([2,7,11,15], 9), [0,1])
