@@ -25,14 +25,35 @@
 
 import unittest
 
-def add_two_numbers(nums):
-  pass
+## Array Inputs
+# Time complexity: O(n)
+# Space complexity: O(n)
+def test_add_two_numbers(l1, l2):
+  res_len = max(len(l1), len(l2))
+  res = [0]*res_len
+  i = 0
+  while i < res_len:
+    i_sum = res[i] 
+    if i < len(l1):
+      i_sum += l1[i]
+    if i < len(l2):
+      i_sum += l2[i]
+    if i_sum < 10:
+      res[i] = i_sum
+    else:
+      if i < res_len-1:
+        res[i+1] = i_sum//10
+      else:
+        res.append(i_sum//10)
+      res[i] = int(str(i_sum)[-1])
+    i +=1
+  return res
 
-class TestSum(unittest.TestCase):
+class TestAddTwoNumbers(unittest.TestCase):
   def test_add_two_numbers(self):
-    self.assertEqual(add_two_numbers([2,4,3], [5,6,4]), [7,0,8])
-    self.assertEqual(add_two_numbers([0], [0]), [0])
-    self.assertEqual(add_two_numbers([9,9,9,9,9,9,9], [9,9,9,9]), [8,9,9,9,0,0,0,1])
+    self.assertEqual(test_add_two_numbers([2,4,3], [5,6,4]), [7,0,8])
+    self.assertEqual(test_add_two_numbers([0], [0]), [0])
+    self.assertEqual(test_add_two_numbers([9,9,9,9,9,9,9], [9,9,9,9]), [8,9,9,9,0,0,0,1])
 
 if __name__ == '__main__':
-    unittest.main()
+  unittest.main()
