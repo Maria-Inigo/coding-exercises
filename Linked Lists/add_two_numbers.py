@@ -23,37 +23,34 @@
 # 0 <= Node.val <= 9
 # It is guaranteed that the list represents a number that does not have leading zeros.
 
-import unittest
+# Definition for singly-linked list.
+class ListNode:
+  def __init__(self, val=0, next=None):
+    self.val = val
+    self.next = next
 
 ## Array Inputs
 # Time complexity: O(n)
 # Space complexity: O(n)
-def test_add_two_numbers(l1, l2):
-  res_len = max(len(l1), len(l2))
-  res = [0]*res_len
-  i = 0
-  while i < res_len:
-    i_sum = res[i] 
-    if i < len(l1):
-      i_sum += l1[i]
-    if i < len(l2):
-      i_sum += l2[i]
-    if i_sum < 10:
-      res[i] = i_sum
+def addTwoNumbers(l1, l2):
+  res = current = ListNode()
+  
+  while l1 or l2:
+    current_sum = current.val
+    current_sum += l1.val if l1 else 0
+    current_sum += l2.val if l2 else 0
+
+    if current_sum < 10:
+      current.val = current_sum
+      if (l1 and l1.next) or (l2 and l2.next):
+        current.next = ListNode()
     else:
-      if i < res_len-1:
-        res[i+1] = i_sum//10
-      else:
-        res.append(i_sum//10)
-      res[i] = int(str(i_sum)[-1])
-    i +=1
+      current.val = int(str(current_sum)[-1])
+      if l1 or l2:
+        current.next = ListNode(current_sum//10)
+        
+    current = current.next
+    l1 = l1.next if l1 else None
+    l2 = l2.next if l2 else None
+      
   return res
-
-class TestAddTwoNumbers(unittest.TestCase):
-  def test_add_two_numbers(self):
-    self.assertEqual(test_add_two_numbers([2,4,3], [5,6,4]), [7,0,8])
-    self.assertEqual(test_add_two_numbers([0], [0]), [0])
-    self.assertEqual(test_add_two_numbers([9,9,9,9,9,9,9], [9,9,9,9]), [8,9,9,9,0,0,0,1])
-
-if __name__ == '__main__':
-  unittest.main()
