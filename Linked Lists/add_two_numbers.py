@@ -31,7 +31,7 @@ class ListNode:
     self.val = val
     self.next = next
 
-## Array Inputs
+## List Inputs
 # Time complexity: O(n)
 # Space complexity: O(n)
 def addTwoNumbers(l1, l2):
