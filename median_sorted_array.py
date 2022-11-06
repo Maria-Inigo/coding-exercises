@@ -21,3 +21,17 @@
 # 0 <= n <= 1000
 # 1 <= m + n <= 2000
 # -106 <= nums1[i], nums2[i] <= 106
+
+import unittest
+
+def lengthOfLongestSubstring(s):
+    pass
+
+class Test(unittest.TestCase):
+    def test(self):
+        self.assertEqual(lengthOfLongestSubstring('abcabcbb'), 3)
+        self.assertEqual(lengthOfLongestSubstring('bbbbb'), 1)
+        self.assertEqual(lengthOfLongestSubstring('pwwkew'), 3)
+
+if __name__ == '__main__':
+  unittest.main()
