@@ -40,7 +40,7 @@ def two_sum_BF(nums, target):
 ## Hash method
 # Time complexity: O()
 # Space complexity: O()
-def two_sum(nums, target):
+def two_sum_hash(nums, target):
   diffs = []
   for num in nums:
     diffs.append(target - num)
@@ -51,7 +51,7 @@ def two_sum(nums, target):
 ## Greedy (sort method)
 # Time complexity: O(n)
 # Space complexity: O(n)
-def two_sum(nums, target):
+def two_sum_sort(nums, target):
   index_nums = list(enumerate(nums))
   index_nums.sort(key=lambda x: x[1])
   i, j = 0, len(nums)-1
@@ -70,9 +70,14 @@ class TestSum(unittest.TestCase):
     self.assertEqual(two_sum_BF([3,3], 6), [0,1])
 
   def test_two_sum(self):
-    self.assertEqual(two_sum([2,7,11,15], 9), [0,1])
-    self.assertEqual(two_sum([3,2,4], 6), [1,2])
-    self.assertEqual(two_sum([3,3], 6), [0,1])
+    self.assertEqual(two_sum_hash([2,7,11,15], 9), [0,1])
+    self.assertEqual(two_sum_hash([3,2,4], 6), [1,2])
+    self.assertEqual(two_sum_hash([3,3], 6), [0,1])
+
+  def test_two_sum(self):
+    self.assertEqual(two_sum_sort([2,7,11,15], 9), [0,1])
+    self.assertEqual(two_sum_sort([3,2,4], 6), [1,2])
+    self.assertEqual(two_sum_sort([3,3], 6), [0,1])
 
 if __name__ == '__main__':
   unittest.main()

@@ -15,3 +15,17 @@
 ## Constraints:
 # 1 <= s.length <= 1000
 # s consist of only digits and English letters.
+
+import unittest
+
+def lengthOfLongestSubstring(s):
+    pass
+
+class Test(unittest.TestCase):
+    def test(self):
+        self.assertEqual(lengthOfLongestSubstring('abcabcbb'), 3)
+        self.assertEqual(lengthOfLongestSubstring('bbbbb'), 1)
+        self.assertEqual(lengthOfLongestSubstring('pwwkew'), 3)
+
+if __name__ == '__main__':
+  unittest.main()
