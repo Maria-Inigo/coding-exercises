@@ -19,22 +19,19 @@
 import unittest
 
 def longestPalindrome(s):
-    res = ''
-    substring = ''
-    while s:
-        print('s-', s, 'sub-', substring, 'rev-', substring[::-1], 'res-', res)
-        if substring == substring[::-1] and len(substring) > len(res):
-            res = substring
-            substring = ''
-        else:
-            substring += s[0]
-        s = s[1:]
-    return res
+    longest_palindrome = ''
+
+    for i in range(len(s)-1):
+        for j in range(i+1,len(s)-1):
+            if (( i==0 and s[i:j+1] == s[j::-1] ) or ( i>0 and s[i:j+1] == s[j:i-1:-1] )) and j-i > len(longest_palindrome):
+                longest_palindrome = s[i:j+1]
+     
+    return longest_palindrome
 
 class Test(unittest.TestCase):
     def test(self):
         self.assertEqual(longestPalindrome('babad'), 'bab')
-        #self.assertEqual(longestPalindrome('cbbd'), 'bb')
+        self.assertEqual(longestPalindrome('cbbd'), 'bb')
 
 if __name__ == '__main__':
   unittest.main()
